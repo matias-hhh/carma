@@ -10,8 +10,21 @@ The main component in carma is the View-class. It is a bit similar to React comp
 The actual views in carma are HTML-containers, which can be updated through the subclassed View. They can be either multi- or single-item views.
 Views can set, append, remove and update view items into them. More view items can be fetched from the server with an easy to use server api interaction tool.
 
+##Installation
 
-#Initialization
+```
+    $ npm install carma
+```
+
+##Usage
+
+```js
+
+    import {View, Carousel, Calendar} from 'carma';
+
+```
+
+##Initialization
 
 First thing we need to do is make a subclass from the View. The subclass needs to have at least one method, renderItem, which is used by the parent class to turn the view item data into html:
 
