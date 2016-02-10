@@ -1,0 +1,21 @@
+{
+  "name": "carma",
+  "version": "1.0.0",
+  "description": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "es6",
+    "framework",
+    "mvc",
+    "lightweight"
+  ],
+  "author": "Matias Huhdanmäki",
+  "license": "MIT",
+  "dependencies": {
+    "es6-promise": "^3.0.2",
+    "superagent": "^1.4.0"
+  }
+}
