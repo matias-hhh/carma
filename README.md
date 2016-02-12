@@ -5,9 +5,9 @@ It is suitable for sites with moderate real-time functionality needs, but for si
 
 ##Introduction
 
-The main component in carma is the View-class. It is a bit similar to React component and is meant to be subclassed to make different views.
+The main component in carma is the View-class. It is a bit similar in principle to a React JS component since it is meant to be subclassed to make different views.
 
-The actual views in carma are instances which are bootstrapped to a DOM container, which can be then updated through the view. They can be either multi- or single-item views.
+The actual views in carma are instances of the subclasse View, which are bootstrapped to a DOM container. The contents of the container can then be updated through the view using subcomponents called view items. Views can be either multi- or single-item views.
 Views can set, append, remove and update view items into them. More view items can be fetched from the server with an easy to use server api interaction tool.
 
 ##Installation
@@ -20,7 +20,7 @@ Views can set, append, remove and update view items into them. More view items c
 
 ```js
 
-    import {View, Carousel, Calendar} from 'carma';
+    import {View} from 'carma';
 
 ```
 
