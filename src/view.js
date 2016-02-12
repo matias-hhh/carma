@@ -44,7 +44,7 @@ export default class View {
     this.appendViewItemsToDOM(viewItem);
   }
 
-    // Return a array-like list of all the DOM-nodes of the view items
+  // Return a array-like list of all the DOM-nodes of the view items
   getViewItems() {
     return this.rootNode.querySelectorAll('[view-item]');
   }
@@ -56,12 +56,14 @@ export default class View {
 
   removeAllViewItems() {
     while (this.rootNode.hasChildNodes()) {
+      this.removeEventListeners(this.rootNode.lastChild);
       this.rootNode.removeChild(this.rootNode.lastChild);
     }
   }
 
   removeViewItem(viewItemId) {
     let viewItem = this.rootNode.querySelector(`[view-item=${viewItemId}]`);
+    this.removeEventListeners(viewItem);
     this.rootNode.removeChild(viewItem);
   }
 
