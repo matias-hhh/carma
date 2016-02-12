@@ -101,7 +101,6 @@ export default class Carousel extends View {
 
 		// Increase index and check if it goes to the beginning
 		this.index++;
-
 		this.index = this.checkOverIndex(this.index);
 
 		// Update the current position indicator to the full circle
@@ -171,8 +170,8 @@ export default class Carousel extends View {
 		clearTimeout(this.timeOutId);
 	}
 
-	// The isOnHold-check is to make sure that the ad cannot be changed too
-	// rapidly, but only after a short timeout to avoid stupid looking ad
+	// The isOnHold-check is to make sure that the item cannot be changed too
+	// rapidly, but only after a short timeout to avoid stupid looking change
 	// animation
 	checkOnHoldStatus() {
 

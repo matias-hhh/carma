@@ -3,11 +3,24 @@
 carma is a lightweight (28,6 kb minified) ES6 Javascript-framework meant to make updating views, binding events and fetching data from server easy without oversized full frameworks.
 It is suitable for sites with moderate real-time functionality needs, but for single page apps, please consider something more suitable (React, Angular etc.)
 
+##Contents
+
+1. [Introduction](#introduction)
+2. [Installation](#installation)
+3. [Getting started](#getting-started)
+4. [Initialization](#initialization)
+5. [Working with the view](#working-with-the-view)
+6. [Event listeners](#event-listeners)
+7. [Fetching data from server](fetching-data-from-server)
+8. [Making the code nice and clean](making-code-nice-and-clean)
+
+
+
 ##Introduction
 
 The main component in carma is the View-class. It is a bit similar in principle to a React JS component since it is meant to be subclassed to make different views.
 
-The actual views in carma are instances of the subclasse View, which are bootstrapped to a DOM container. The contents of the container can then be updated through the view using subcomponents called view items. Views can be either multi- or single-item views.
+The actual views in carma are instances of the subclassed View, which are bootstrapped to a DOM container. The contents of the container can then be updated through the view using subcomponents called view items. Views can be either multi- or single-item views.
 Views can set, append, remove and update view items into them. More view items can be fetched from the server with an easy to use server api interaction tool.
 
 ##Installation
@@ -26,7 +39,8 @@ Views can set, append, remove and update view items into them. More view items c
 
 ##Getting started
 
-First thing we need to do is make a subclass from the View. The subclass needs to have at least one method, renderItem, which is used by the parent class to turn the view item data into html:
+First thing we need to do is make a subclass from the View. The subclass needs to have at least one method, renderItem. RenderItem is used internally by the view every time a view item is added to the view to form the actual markup from the data.
+It works essentially as a template for the view item:
 
 ```js
 
@@ -69,7 +83,7 @@ Script
 
 ```
 
-Voila, the view is initialized. Note that the container doesn't have to be empty, it can have pre-rendered view items, which are initialize when the view is initialized. This includes the event listeners, which will be discussed later in this doc.
+Voila, the view is initialized. Note that the container doesn't have to be empty, it can have pre-rendered view items, which are initialized when the view is initialized. This includes the event listeners, which will be discussed later in this doc.
 
 ##Working with the view
 
@@ -207,3 +221,63 @@ class ExampleView extends View {
 
     }
 ```
+
+##Carousel
+
+Carma comes with a premade carousel subclass, which is pretty much plug and play. It renders arrows that can be used to change the items manually to the sides of the root node, and shows indicator circles at the bottom of the root node.
+**Note: the arrows and the indicator circles need Font Awesome to work!**
+The carousel changes the items autoamtically after a period of time. Only thing you need to worry about is again the renderItem-function, in which you define how a single carousel item looks like.
+
+**Note: the carousel accepts the carousel items as a second parameter**
+
+Example:
+
+HTML
+
+```html
+
+    <div id="carousel-container"></div>
+
+```
+
+
+View
+```js
+
+    import Carousel from 'carma';
+
+    class ExampleCarousel extends Carousel {
+
+        renderItem({id, title, content}) {
+            return(
+                `<div view-item=${id}>
+                    <h1>${title}</h1>
+                    <p>${content}</p>
+                </div>`
+            );
+        }
+
+    }
+
+```
+
+
+Script
+
+```js
+    import ExampleCarousel from './views/example-carousel(or whatever)';
+
+    let items = [{id: 1, title: 'title1', content: 'content1'},
+                 {id: 2, title: 'title2', content: 'content2'}];
+
+    let carousel = new ExampleCarousel('carousel-container', items);
+
+```
+
+And that's it, a working carousel.
+
+##Calendar
+
+Carma has a builtin calendar subclass also, but due to the complexity of calendars, it is not so plug and play as the carousel.
+The calendar essentially takes event data for the currently visible month as a parameter, constructs an month matrix with weeks as rows and week days as columns
+and inserts the events into the corresponding days and passes the matrix for the renderItem-function. It will be a bit more difficult to render a matrix.
