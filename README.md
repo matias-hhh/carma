@@ -11,8 +11,9 @@ It is suitable for sites with moderate real-time functionality needs, but for si
 4. [Initialization](#initialization)
 5. [Working with the view](#working-with-the-view)
 6. [Event listeners](#event-listeners)
-7. [Fetching data from server](fetching-data-from-server)
-8. [Making the code nice and clean](making-code-nice-and-clean)
+7. [Fetching data from server](#fetching-data-from-server)
+8. [Making the code nice and clean](#making-code-nice-and-clean)
+9. [Carousel](#carousel)
 
 
 
