@@ -7,7 +7,7 @@ It is suitable for sites with moderate real-time functionality needs, but for si
 
 The main component in carma is the View-class. It is a bit similar to React component and is meant to be subclassed to make different views.
 
-The actual views in carma are HTML-containers, which can be updated through the subclassed View. They can be either multi- or single-item views.
+The actual views in carma are instances which are bootstrapped to a DOM container, which can be then updated through the view. They can be either multi- or single-item views.
 Views can set, append, remove and update view items into them. More view items can be fetched from the server with an easy to use server api interaction tool.
 
 ##Installation
@@ -24,7 +24,7 @@ Views can set, append, remove and update view items into them. More view items c
 
 ```
 
-##Initialization
+##Getting started
 
 First thing we need to do is make a subclass from the View. The subclass needs to have at least one method, renderItem, which is used by the parent class to turn the view item data into html:
 
@@ -48,7 +48,10 @@ First thing we need to do is make a subclass from the View. The subclass needs t
 
 And we have a view ready. Note that each view item has to consist of a single container, and the container needs an attribute ``view-item``, which need to have a unique value.
 
-To initialize the view, we need to initialize the class. View-class needs one parameter, a ``rootNodeId``, which is an existant id somewhere on the pages HTML-code:
+##Initialization
+
+To initialize the view, we need to initialize the class. View-class needs one parameter, a ``rootNodeId``, which is an existant id somewhere on the pages HTML-code.
+The root node acts as a container where the view "roots" itself, and outputs all it's view items.
 
 HTML
 
@@ -169,7 +172,7 @@ The funtions will be generated in the views api-property and they return a promi
         })
         .catch(err => {
             console.error(err);
-        }
+        });
 
 ```
 
