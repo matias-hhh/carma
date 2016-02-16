@@ -56,14 +56,12 @@ export default class View {
 
   removeAllViewItems() {
     while (this.rootNode.hasChildNodes()) {
-      this.removeEventListeners(this.rootNode.lastChild);
       this.rootNode.removeChild(this.rootNode.lastChild);
     }
   }
 
   removeViewItem(viewItemId) {
     let viewItem = this.rootNode.querySelector(`[view-item=${viewItemId}]`);
-    this.removeEventListeners(viewItem);
     this.rootNode.removeChild(viewItem);
   }
 
@@ -130,29 +128,6 @@ export default class View {
 
     });
 
-  }
-
-  removeEventListeners(viewItem) {
-    this.eventAttributes.forEach(eventAttribute => {
-      let nodes = viewItem.querySelectorAll(`[${eventAttribute}]`);
-
-      // Check if the viewItem node itself has an eventlistener attribute
-      if (viewItem.getAttribute(eventAttribute)) {
-        let eventName = eventAttribute.substr(3);
-        let eventListenerName = viewItem.getAttribute(eventAttribute);
-        viewItem.removeEventListener(eventName, event => {
-          this[eventListenerName](event, viewItem);
-        });
-      }
-
-      for (let i = 0; i < nodes.length; i++) {
-        let eventName = eventAttribute.substr(3);
-        let eventListenerName = nodes[i].getAttribute(eventAttribute);
-        nodes[i].removeEventListener(eventName, event => {
-          this[eventListenerName](event, viewItem);
-        });
-      }
-    });
   }
 
   // Create nodes from model instances. The newly created nodes are stored
