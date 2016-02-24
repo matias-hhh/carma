@@ -39,6 +39,12 @@ export default class View {
 
   // Set a view consisting of a single view item
   setSingleItemView(modelInstances) {
+
+    if (modelInstances instanceof Array) {
+      let err = new TypeError('setSingleItemView: input cannot be an array');
+      throw err;
+    }
+
     this.removeAllViewItems();
     let viewItem = this.renderViewItem(modelInstances);
     this.appendViewItemsToDOM(viewItem);
@@ -51,7 +57,7 @@ export default class View {
 
   // Get a single view item DOM node
   getViewItem(viewItemId) {
-      return this.rootNode.querySelector(`[view-item=${viewItemId}]`);
+      return this.rootNode.querySelector(`[view-item="${viewItemId}"]`);
   }
 
   removeAllViewItems() {
@@ -61,7 +67,7 @@ export default class View {
   }
 
   removeViewItem(viewItemId) {
-    let viewItem = this.rootNode.querySelector(`[view-item=${viewItemId}]`);
+    let viewItem = this.rootNode.querySelector(`[view-item="${viewItemId}"]`);
     this.rootNode.removeChild(viewItem);
   }
 
