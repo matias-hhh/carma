@@ -50,7 +50,7 @@ It works essentially as a template for the view item:
         renderItem({id, title, content}) {
             // This HTML string will become the actual DOM node of the view item
             return(
-                `<div view-item=${id}>
+                `<div view-item="${id}">
                     <h1>${title}</h1>
                     <p>${content}</p>
                 </div>`
@@ -108,10 +108,10 @@ To actually do something with the view, the View has multiple methods:
     viewItemDOMNodes = exampleView.getViewItems();
 
     // getViewItem returns a single view item's DOM node (by id)
-    viewItemDOMNOde = exampleView.getViewItem(1)
+    viewItemDOMNOde = exampleView.getViewItem('1')
 
     // removeViewItem removes the view item corresponding the given id
-    exampleView.removeViewItem(1);
+    exampleView.removeViewItem('1');
 
     // removeAllViewItems does what the name implies.
     exampleView.removeAllViewItems();
