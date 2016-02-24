@@ -165,7 +165,7 @@ You can easily set up ajax functions by passing an extra parameter to the view w
 
 ```js
 
-    let apiOpts = [{name: 'getMoreItems', method: 'GET', url: 'www.example.com/api/items'}]
+    let apiOpts = [{name: 'getMoreItems', method: 'GET', url: '/api/items'}]
     let exampleView = new ExampleView('example-view-container', apiOpts);
 
 ```

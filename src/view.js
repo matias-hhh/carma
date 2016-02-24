@@ -2,9 +2,9 @@ import resource from './resource';
 
 export default class View {
 
-  constructor(rootNodeId, apiOpts) {
+  constructor(rootNodeId, apiOpts=undefined) {
     this.rootNode = document.getElementById(rootNodeId);
-    this.eventAttributes = ['on-mousedown', 'on-mouseenter', 'on-mouseleave', 'on-change', 'on-keyup'];
+    this.eventAttributes = ['on-mousedown', 'on-mouseenter', 'on-mouseleave', 'on-change', 'on-keyup', 'on-click', 'on-keydown'];
     this.currentViewItemId = 0;
 
     // Apply event listeners to pre-rendered items
@@ -93,13 +93,15 @@ export default class View {
 
         case 'PUT':
           this.api[name] = function(query, data) {
-            return resource(mehtod, url + query, data);
+            return resource(method, url + query, data);
           };
           break;
       }
 
     });
   }
+
+  /* Internal methods */
 
   // Search for event attributes in the nodes of a given viewItem and add
   // a corresponding event listener to that node
@@ -113,9 +115,10 @@ export default class View {
       if (viewItem.getAttribute(eventAttribute)) {
         let eventName = eventAttribute.substr(3);
         let eventListenerName = viewItem.getAttribute(eventAttribute);
-        viewItem.addEventListener(eventName, event => {
+        let eventListener = event => {
           this[eventListenerName](event, viewItem);
-        });
+        };
+        viewItem.addEventListener(eventName, eventListener);
       }
 
       for (let i = 0; i < nodes.length; i++) {

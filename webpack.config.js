@@ -7,17 +7,17 @@ module.exports = {
     carma: './index',
   },
   output: {
-    path: '.',
-    filename: '[name].js'
+    path: './build',
+    filename: 'carma.min.js'
   },
   module: {
     loaders: [
       {
         test: /\.(js|jsx)?$/,
         exclude: /(node_modules)/,
-        loader: 'babel-loader',
+        loader: 'babel',
         query: {
-          stage: 0
+          presets: ['es2015']
         }
       },
       {
